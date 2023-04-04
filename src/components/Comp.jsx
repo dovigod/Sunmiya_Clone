@@ -1,8 +1,11 @@
-import { useContract } from '@contexts/SunmiyaContractManager';
+import { useContract, useInitialQuery } from '@contexts/SunmiyaContractManager';
 
 const Comp = () => {
-  const { contract } = useContract();
-  console.log(contract);
+  const { getNFTData } = useContract();
+  const { data, isLoading } = useInitialQuery();
+  getNFTData(0);
+
+  console.log(data);
   return <></>;
 };
 export default Comp;
