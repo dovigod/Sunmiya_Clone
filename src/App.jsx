@@ -3,7 +3,7 @@ import { SunmiyaContractProvider } from '@contexts/SunmiyaContractManager';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import Comp from '@components/Comp';
-
+import Gallery from '@pages/Gallery';
 const queryClient = new QueryClient();
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools />
         <SunmiyaContractProvider>
-          <Comp />
+          <Gallery />
         </SunmiyaContractProvider>
       </QueryClientProvider>
     </div>
