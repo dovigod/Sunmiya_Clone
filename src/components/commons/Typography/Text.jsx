@@ -5,9 +5,15 @@ const allowedTagNames = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'a', '
 /**
  * @param {string} variant - The variant of the heading.
  * - EBH1
+ * - BBH2
+ * - BBH3
+ * - BBH4
  * - BH2
  * - BH3
  * - BH4
+ * - H2
+ * - H3
+ * - H4
  * @param {string} [as] - The tag name of the heading. (optional)
  * @param {string} children - The content of the heading.
  * @param {string} [className] - The additional class name of the heading.

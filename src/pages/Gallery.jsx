@@ -16,7 +16,7 @@ const Gallery = () => {
 export default Gallery;
 
 const Container = styled.div`
-  background-color: var(--color-purple-700);
+  background-color: var(--color-purple-800);
   min-height: 500vh;
   overflow-x: none;
   width: 100vw;

@@ -9,6 +9,5 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   width: 90%;
-  background: red;
-  min-height: 500px;
+  height: 500vh;
 `;

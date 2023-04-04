@@ -1,10 +1,10 @@
 import './App.css';
 import './styles/root.scss';
 import { SunmiyaContractProvider } from '@contexts/SunmiyaContractManager';
+import { FilterContextProvider } from '@contexts/FilterManager';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
-import Comp from '@components/Comp';
 import Gallery from '@pages/Gallery';
 const queryClient = new QueryClient();
 function App() {
@@ -13,11 +13,12 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools />
         <SunmiyaContractProvider>
-          <Gallery />
+          <FilterContextProvider>
+            <Gallery />
+          </FilterContextProvider>
         </SunmiyaContractProvider>
       </QueryClientProvider>
     </div>
   );
 }
-
 export default App;
