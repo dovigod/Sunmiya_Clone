@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Text from '@components/commons/Typography/Text';
 //ebh5 , 4
-const Description = ({ rank = '123', name = 'sfdfe' }) => {
+const Description = ({ rank, name }) => {
   return (
     <Container>
       <Text variant="EBH3" className="line-height-1.4" color="var(--color-white-900)">

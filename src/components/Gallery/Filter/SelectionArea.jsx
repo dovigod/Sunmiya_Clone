@@ -15,7 +15,7 @@ const SelectionArea = ({ isOpen, criteria }) => {
 export default SelectionArea;
 
 const Container = styled.div`
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   max-height: ${({ isOpen }) => (isOpen ? '100vh' : 0)};
   height: fit-content;
   width: 100%;

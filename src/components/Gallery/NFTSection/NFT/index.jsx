@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 import Image from './Image';
 import Description from './Description';
-const NFT = ({ data, idx }) => {
+import { forwardRef } from 'react';
+const NFT = forwardRef(({ data, idx }, ref) => {
+  const { image, name } = data;
   return (
-    <Container>
-      <Image src={data.src} radius="8px 8px 0px 0px" />
-      <Description />
+    <Container ref={ref}>
+      <Image src={image} radius="8px 8px 0px 0px" />
+      <Description name={name} rank={idx} />
     </Container>
   );
-};
+});
 export default NFT;
 
 const Container = styled.div`

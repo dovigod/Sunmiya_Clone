@@ -1,6 +1,6 @@
 import './App.css';
 import './styles/root.scss';
-import { SunmiyaContractProvider } from '@contexts/SunmiyaContractManager';
+import { SunmiyaContractProvider } from '@contexts/SunmiyaContractContext';
 import { FilterContextProvider } from '@contexts/FilterManager';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools />
-        <SunmiyaContractProvider>
+        <SunmiyaContractProvider queryClient={queryClient}>
           <FilterContextProvider>
             <Gallery />
           </FilterContextProvider>

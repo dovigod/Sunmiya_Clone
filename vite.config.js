@@ -34,6 +34,14 @@ export default defineConfig({
       {
         find: '@assets',
         replacement: path.resolve(__dirname, 'src/assets')
+      },
+      {
+        find: '@constants',
+        replacement: path.resolve(__dirname, 'src/constants')
+      },
+      {
+        find: '@hooks',
+        replacement: path.resolve(__dirname, 'src/hooks')
       }
     ]
   }

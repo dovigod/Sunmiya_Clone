@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import Text from '@components/commons/Typography/Text';
-import { filterMap } from '@/constants/filterMap';
 import { ChevoronDownIcon } from '@assets/icons/ChevoronDownIcon';
 import SelectionArea from './SelectionArea';
 

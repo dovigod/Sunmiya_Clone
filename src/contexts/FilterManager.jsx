@@ -1,8 +1,8 @@
 import { useState, useContext, createContext } from 'react';
-import { filterMap } from '@/constants/filterMap';
+import { filterMap } from '@constants/filterMap';
 const FilterContext = createContext();
 
-const FILTER_PROTO = {
+export const FILTER_PROTO = {
   Background: new Array(filterMap['Background'].length).fill(false),
   Wing: new Array(filterMap['Wing'].length).fill(false),
   Hand: new Array(filterMap['Hand'].length).fill(false),
