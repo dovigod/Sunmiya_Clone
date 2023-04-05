@@ -1,18 +1,57 @@
-[ ] - Techa Miya의 NFT 이미지를 볼 수 있는 갤러리 형태의 페이지
-0번에서 999번까지, 총 1000개의 NFT 정보를 이용하여 구현해주세요.
+# Finger Labs Frontend interview : cloning[Sunmiya Club Techa Miya Gallery](https://sunmiya.club/gallery/techa)
 
-[ ] - NFT의 속성(attributes)으로 필터링하는 기능
-NFT의 속성은 대분류인 trait_type과 소분류의 value로 이루어져 있습니다.
-attributes 데이터를 이용하여 선미야클럽의 갤러리 페이지처럼 필터링이 되도록 구현해주세요.
+## Key Features
 
-[ ] - Techa Miya NFT의 토큰 정보에는 name 데이터가 있습니다.
-name 데이터에 있는 토큰 번호를 이용하여 검색 기능을 구현해주세요.
+- Filtering
+- Progressing Fetching
+- Search By TokenId
 
-etc
-최적화
-원하는 방법으로 페이지를 최적화해주세요.
-디자인
-피그마나 제플린 링크는 제공되지 않습니다. 대신, 스크린샷과 선미야클럽의 갤러리 페이지를 참고하여 디자인을 해주세요.
-중요한 것은 디자인의 가시성입니다. 알아볼 수 있는 형태를 갖추는 것이 중요하며, 디자인의 세부 요소는 중요하지 않습니다.
-Etc.
-실제 선미야클럽 갤러리 페이지의 'MY NFT'기능과 드롭다운 정렬(랭킹 및 번호 정렬)은 구현하지 않아도 됩니다.
+---
+
+## Get Started
+
+### Initializing project
+
+Basically used `yarn` as package manager. So recommend to use yarn.
+
+```
+yarn install
+```
+
+### Quick start
+
+Run project on local server.
+
+```shell
+yarn dev
+```
+
+### Terminology
+
+- NFT : Specifc NFT Component, mapped with data returned by `contract.tokenURI()`
+- NFTChunk : a.k.a NFTPaginationChunk, it contains 33 units of NFT.
+- chunkId : Unique identifier of each NFTChunk.(0 ~ 32?)
+- tokenId : Unique identifier of each NFT. (0 ~ 999)
+- threshold(point) : Threshold component, if this component gets on viewport, next fetch goes on.
+- searchTarget : keyword which user enters
+
+### Flow Details
+
+1.  Filter
+
+- FilterManagerContext + useFilterManger deals entire logic of filter flow.
+- Since there r lots of filter option, I'd made object which contains "trait_type" as key, and collection of available values as value. so whenever wants to check whether specific NFT caught by filter, then just access filter object by NFT's trait_type and value. If result is true, Its caught.
+
+2.  Progressive Fetching (fetch by bundle)
+
+- SunmiyaContractContext + useContract deals entire logic of this flow.
+- This flow was mainly to cope with performance issue, due to bunch of API calls.
+- Since ```contract.tokenURI()` returns endpoint for actual data, I needed to fetch twice per each NFT, Which means I need maximum 2000 times of request to get whole data.
+- Combined with intersectionObserver API, after initial fetch (33 NFT), whenever threshold point gets hit, fetch next NFTchunk.
+
+3.  Search Fetching + filtering (search by tokenId)
+
+- FilterManagerContext + SunmiyaContractContext + useSearch deals this logic
+- honestly, this logic should be more optimized. (which could be done by migrating some features from progressive fetching, since I'm getting lack of time, I'll leave as text)
+- since we all know NFT ranges only from 0 to 999, select number from 0 ~ 999 which matches searchTarget
+- send request to contract and request to URI. (by this, you will get lots of lags if keyword has lots of common on NFT range.) (e.g 1 -> [1,10,11~19,21,31,....])
