@@ -1,7 +1,7 @@
 import './App.css';
 import './styles/root.scss';
 import { SunmiyaContractProvider } from '@contexts/SunmiyaContractContext';
-import { FilterContextProvider } from '@contexts/FilterManager';
+import { FilterContextProvider } from '@contexts/FilterManagerContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 

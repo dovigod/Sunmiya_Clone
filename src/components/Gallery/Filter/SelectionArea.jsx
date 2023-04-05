@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { filterMap } from '@/constants/filterMap';
+import { filterMap } from '@constants/filterMap';
 import Selection from './Selection';
 
 const SelectionArea = ({ isOpen, criteria }) => {

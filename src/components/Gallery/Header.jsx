@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Text from '@components/commons/Typography/Text';
+
 const Header = () => {
   return (
     <Container>

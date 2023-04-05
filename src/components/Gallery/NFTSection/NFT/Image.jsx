@@ -4,6 +4,7 @@ import { memo, useState, useLayoutEffect } from 'react';
 /**
  * A simple component that displays an image without distortion.
  * @param {string} src - The source of the image.
+ * @param {string} [srcset] - The source set of the image.
  * @param {string} [width] - The width of the image.
  * @param {string} [height] - The height of the image. If not provided, the image will be square.
  * @param {string} [radius] - The border radius of the image.
@@ -20,6 +21,7 @@ const LazyImage = ({
   contain = 'cover',
   className,
   skeleton,
+  srcset,
   ...props
 }) => {
   const [imageSrc, setImageSrc] = useState(null);
@@ -30,12 +32,18 @@ const LazyImage = ({
   }, []);
   return (
     <ImageContainer width={width} height={height} radius={radius} className={className}>
-      {src && imageSrc ? <Img src={imageSrc} {...props} contain={contain} /> : skeleton ? skeleton() : <Skeleton />}
+      {src && imageSrc ? (
+        <Img srcset={srcset} src={imageSrc} {...props} contain={contain} />
+      ) : skeleton ? (
+        skeleton()
+      ) : (
+        <Skeleton />
+      )}
     </ImageContainer>
   );
 };
 
-export default memo(LazyImage);
+export default LazyImage;
 
 const ImageContainer = styled.div`
   width: ${({ width }) => width};

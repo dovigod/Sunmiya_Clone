@@ -1,16 +1,18 @@
 import styled from 'styled-components';
-import { filterMap } from '@/constants/filterMap';
+import { filterMap } from '@constants/filterMap';
 import { RefreshIcon } from '@assets/icons';
 import Text from '@components/commons/Typography/Text';
 import Criteria from './Criteria';
+import useFilterManager from '@hooks/useFilterManager';
 const Filter = () => {
+  const { resetFilter } = useFilterManager();
   return (
     <Container>
       <Header>
         <Text variant="BBH2" as="span">
           Filter
         </Text>
-        <RefreshIcon onClick={() => alert('hi')} size={1.5} />
+        <RefreshIcon onClick={() => resetFilter()} size={1.5} />
       </Header>
 
       {Object.keys(filterMap).map((key, idx) => {

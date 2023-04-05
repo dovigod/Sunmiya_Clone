@@ -1,9 +1,9 @@
 import Text from '@components/commons/Typography/Text';
 import styled from 'styled-components';
-import { useFilterManager } from '@contexts/FilterManager';
-
+import useFilterManager from '@hooks/useFilterManager';
 const Selection = ({ text, criteria, value }) => {
-  const { addFilterOption, removeFilterOption, getCurrentFilterList } = useFilterManager(criteria);
+  const { addFilterOption, removeFilterOption, getCurrentFilterList, filter } = useFilterManager(criteria);
+
   const selected = getCurrentFilterList()[value];
 
   function selectHandler() {

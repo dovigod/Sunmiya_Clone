@@ -14,7 +14,7 @@ export default function useContract(chunkId = 0) {
     queryKey: ['nftDatas', chunkId],
     queryFn: getNFTDatas,
     onSuccess: () => {
-      console.log('fin1', fetchIndicator, nftDatas);
+      console.log('fin1', fetchIndicator);
     },
     enabled: true,
     retry: 2,

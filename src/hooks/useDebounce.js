@@ -13,8 +13,8 @@ const useDebounce = (value, delay = 1000) => {
       const handler = setTimeout(() => {
         setDebouncedValue(value);
       }, delay);
-      // Cancel the timeout if value changes (also on delay change or unmount)
-      // .. within the delay period. Timeout gets cleared and restarted.
+
+      // .. within the delay period if state gets update -> Timeout gets cleared and restarted
       return () => {
         clearTimeout(handler);
       };

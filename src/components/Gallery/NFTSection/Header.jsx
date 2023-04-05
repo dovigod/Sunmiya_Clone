@@ -1,9 +1,20 @@
 import styled from 'styled-components';
-
+import useDebounce from '@hooks/useDebounce';
+import { useEffect, useState } from 'react';
+import useFilterManager from '@hooks/useFilterManager';
 const Header = () => {
+  const [userInput, setUserInput] = useState('');
+  const tokenId = useDebounce(userInput, 200);
+  const { setSearchTarget } = useFilterManager();
+  function searchByTokenId(event) {
+    setUserInput(event.target.value);
+  }
+  useEffect(() => {
+    setSearchTarget(tokenId);
+  }, [tokenId]);
   return (
     <Container>
-      <Search placeholder="Number" />
+      <Search placeholder="Number" onChange={searchByTokenId} />
     </Container>
   );
 };

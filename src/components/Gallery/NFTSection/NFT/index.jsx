@@ -6,7 +6,7 @@ const NFT = forwardRef(({ data, idx }, ref) => {
   const { image, name } = data;
   return (
     <Container ref={ref}>
-      <Image src={image} radius="8px 8px 0px 0px" />
+      <Image srcset={image + ' 269w'} src={image} radius="8px 8px 0px 0px" />
       <Description name={name} rank={idx} />
     </Container>
   );
@@ -17,6 +17,7 @@ const Container = styled.div`
   width: 100%;
   min-width: 224px;
   max-width: 269px;
+  min-height: 300px;
   box-sizing: border-box;
   flex-direction: column;
   -webkit-box-pack: justify;
