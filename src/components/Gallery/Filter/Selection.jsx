@@ -10,10 +10,8 @@ const Selection = ({ text, criteria, value }) => {
     selected ? removeFilterOption(value) : addFilterOption(value);
   }
   return (
-    <Container>
-      <CheckBox selected={selected} onClick={selectHandler}>
-        {selected ? <Check /> : null}
-      </CheckBox>
+    <Container onClick={selectHandler}>
+      <CheckBox selected={selected}>{selected ? <Check /> : null}</CheckBox>
       <Text variant="H4">{text}</Text>
     </Container>
   );
@@ -27,6 +25,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: flex-start;
   padding: 1rem 0px;
+  cursor: pointer;
 `;
 const CheckBox = styled.button`
   border-radius: 4px;

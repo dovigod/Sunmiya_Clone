@@ -1,17 +1,19 @@
-@use './variables/colors' as *;
+@use './colors.scss';
 @use './typography.scss';
-
+@use './animations.scss';
 html,
 body {
+  font-size: 10px;
+}
+
+body {
+  background-color: var(--color-purple-800);
+  display: flex;
+  justify-content: center;
+}
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 10px;
-}
-:root {
-  @each $color, $shades in $colors {
-    @each $shade, $value in $shades {
-      --color-#{"" + $color}-#{$shade}: #{$value};
-    }
-  }
 }

@@ -44,6 +44,30 @@
   @extend .line-height-1;
   @extend .letter-spacing-0\.4;
 }
+.ebh2 {
+  @extend .ebh;
+  @extend .font-size-18;
+  @extend .line-height-1;
+  @extend .letter-spacing-0\.4;
+}
+.ebh3 {
+  @extend .ebh;
+  @extend .font-size-16;
+  @extend .line-height-1;
+  @extend .letter-spacing-0\.4;
+}
+.ebh4 {
+  @extend .ebh;
+  @extend .font-size-14;
+  @extend .line-height-1;
+  @extend .letter-spacing-0\.4;
+}
+.ebh5 {
+  @extend .ebh;
+  @extend .font-size-12;
+  @extend .line-height-1;
+  @extend .letter-spacing-0\.4;
+}
 
 .bbh {
   @extend .font-weight-600;

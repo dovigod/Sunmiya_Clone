@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Header from '@components/Gallery/Header';
-import Content from '@components/Gallery/Content';
 import Filter from '@components/Gallery/Filter';
+import NFTSection from '@components/Gallery/NFTSection';
 
 const Gallery = () => {
   return (
@@ -9,6 +9,7 @@ const Gallery = () => {
       <Header />
       <Content>
         <Filter />
+        <NFTSection />
       </Content>
     </Container>
   );
@@ -16,7 +17,6 @@ const Gallery = () => {
 export default Gallery;
 
 const Container = styled.div`
-  background-color: var(--color-purple-800);
   min-height: 500vh;
   overflow-x: none;
   width: 100vw;
@@ -25,4 +25,11 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 70px;
+  max-width: 122rem;
+`;
+
+const Content = styled.div`
+  display: flex;
+  width: 90%;
+  gap: 3rem;
 `;

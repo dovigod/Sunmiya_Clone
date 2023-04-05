@@ -30,7 +30,8 @@ const Header = styled.div`
   align-items: center;
 `;
 const Container = styled.div`
-  width: 220px;
+  min-width: 220px;
+
   position: sticky;
   position: -webkit-sticky;
   top: 0px;
@@ -46,7 +47,11 @@ const Container = styled.div`
     display: none;
   }
 
-  @media (max-width: 850px) {
+  @media screen and (max-width: 850px) {
     display: none;
+  }
+  @media screen and (min-width: 1220px) {
+    width: 100%;
+    max-width: 264px;
   }
 `;
