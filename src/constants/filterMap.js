@@ -12,6 +12,9 @@ import { Mask } from './_mask';
 import { Earring } from './_earring';
 import { Head } from './_head';
 
+/**
+ *  [criterial] : [...values]
+ */
 export const filterMap = {
   Background,
   Wing,

@@ -4,7 +4,7 @@ import Header from './Header';
 import useContract, { COUNT_PER_FETCH } from '@hooks/useContract';
 import useFilterManager from '@hooks/useFilterManager';
 import useSearch from '@hooks/useSearch';
-import { isIncluded } from '@utils/string';
+import { isIncluded, popTokenIdFromName } from '@utils/string';
 import { useEffect, useRef } from 'react';
 
 /**
@@ -27,7 +27,7 @@ const NFTSection = () => {
     <Container>
       <Header />
       <Content ref={contentRef}>
-        {searchedDatas && searchTarget && filter
+        {searchedDatas && searchTarget
           ? filterCnt
             ? filterData(searchedDatas).map((item, idx) => {
                 const id = Number(item.name.split('#')[1]);
@@ -100,13 +100,16 @@ const NFTPaginationChunk = ({ isLast = false, chunkId, contentRef }) => {
 
   //filter nftChunk
   function filterNFTChunk() {
+    // filter Data
+
     let nfts = filterCnt ? filterData(nftDatas) : nftDatas;
     nfts = nfts?.map((item, idx) => {
       // tokenId could be considered as idx of contentRef
       // nft's index (id) ranges =>  (0 ~ 32) + ((0~32) * 33) => 0 ~ 999 (approximatly)
       const id = idx + chunkId * COUNT_PER_FETCH;
-      // 'trait_type', 'values'
-      // 1. filter by tokenId searching (searchTarget).
+
+      // filter by tokenId searching (searchTarget).
+      //!! todos !! move this logic inside useSearch
       if (searchTarget && !isIncluded(item.name, searchTarget)) {
         return <></>;
       }

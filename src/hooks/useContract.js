@@ -5,6 +5,11 @@ import axios from 'axios';
 
 export const COUNT_PER_FETCH = 33;
 
+/**
+ * interface for SunmiyaContract Context, mainly to handle Progressive fetching flow
+ * !(note)! - component which uses this hook must be wrapped with SunmiyaContractContext
+ * @param {number} [chunkId] - unique identifier of specific chunck to fetch SunmiyaContractContext
+ */
 export default function useContract(chunkId = 0) {
   if (!SunmiyaContractContext) {
     throw new Error('Initialzation Error: Context not found');
@@ -23,12 +28,19 @@ export default function useContract(chunkId = 0) {
     keepPreviousData: true
   });
 
+  /**
+   * fetch NFT chunk (NFT * 33)
+   * @returns Promise<NFTData>
+   */
   async function getNFTDatas() {
     try {
+      //1. call tokenURI with appropriate id(idx + chunkId * COUNT_PER_FETCH)
       let nftData = new Array(COUNT_PER_FETCH)
         .fill(false)
         .map((_, idx) => contract.tokenURI(idx + chunkId * COUNT_PER_FETCH));
       nftData = await Promise.all(nftData);
+
+      //2. fetch to URI which was returned by step 1.
       nftData = await Promise.all(
         nftData.map(async (dataURI) => {
           const data = await axios.get(dataURI, {
@@ -46,6 +58,7 @@ export default function useContract(chunkId = 0) {
   }
   /**
    * get specific NFT data (not for general purpose)
+   * currently not used.
    * @param {number} tokenId - 0 ~ 999
    */
   async function getNFTData(tokenId) {

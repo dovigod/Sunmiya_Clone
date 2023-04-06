@@ -18,8 +18,11 @@ export const FILTER_PROTO = {
   Head: new Array(filterMap['Head'].length).fill(false)
 };
 export const FilterContextProvider = ({ children }) => {
+  // overview of filter
   const [filter, setFilter] = useState(FILTER_PROTO);
+  // tracks how many filter added by user, if 0 -> don't apply filter logic
   const [filterCnt, setFilterCnt] = useState(0);
+  // tracks user input (search logic)
   const [searchTarget, setSearchTarget] = useState('');
 
   return (

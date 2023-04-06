@@ -55,3 +55,7 @@ yarn dev
 - honestly, this logic should be more optimized. (which could be done by migrating some features from progressive fetching, since I'm getting lack of time, I'll leave as text)
 - since we all know NFT ranges only from 0 to 999, select number from 0 ~ 999 which matches searchTarget
 - send request to contract and request to URI. (by this, you will get lots of lags if keyword has lots of common on NFT range.) (e.g 1 -> [1,10,11~19,21,31,....])
+
+### Issues
+
+[ ] - layout shift for Image
