@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import NFT from './NFT';
 import Header from './Header';
 import useContract, { COUNT_PER_FETCH } from '@hooks/useContract';
-import useFilterManager from '@hooks/useFilterManager';
+import useFilterManager , {REFETCH_THRESHOLD} from '@hooks/useFilterManager';
 import useSearch from '@hooks/useSearch';
 import { isIncluded, popTokenIdFromName } from '@utils/string';
 import { useEffect, useRef } from 'react';
@@ -18,7 +18,7 @@ import { useEffect, useRef } from 'react';
 // Root component, where Fetching occurs
 const NFTSection = () => {
   const { fetchIndicator } = useContract();
-  const { searchTarget, filterData, filterCnt, filter } = useFilterManager();
+  const { searchTarget, filterData, filterCnt } = useFilterManager();
   const { searchedDatas } = useSearch(searchTarget);
   const contentRef = useRef();
   //render NFTchunks based on fetchIndicator
@@ -30,11 +30,11 @@ const NFTSection = () => {
         {searchedDatas && searchTarget
           ? filterCnt
             ? filterData(searchedDatas).map((item, idx) => {
-                const id = Number(item.name.split('#')[1]);
+                const id = popTokenIdFromName(item)
                 return <NFT data={item} key={item + id} idx={id} />;
               })
             : searchedDatas.map((item, idx) => {
-                const id = Number(item.name.split('#')[1]);
+              const id = popTokenIdFromName(item)
                 return <NFT data={item} key={item + id} idx={id} />;
               })
           : new Array(fetchIndicator + 1)
@@ -54,7 +54,7 @@ const NFTSection = () => {
 
 const NFTPaginationChunk = ({ isLast = false, chunkId, contentRef }) => {
   const { nftDatas, isLoading, isError, setFetchIndicator, fetchIndicator } = useContract(chunkId);
-  const { searchTarget, filterData, filterCnt, filter } = useFilterManager();
+  const { searchTarget, filterData, filterCnt } = useFilterManager();
   // on mount,
   // sets threshold point when to fetch next NFTChunk using intersectionObserver Api
   // currently, threshold is 9th visulized component from rear.
@@ -65,7 +65,7 @@ const NFTPaginationChunk = ({ isLast = false, chunkId, contentRef }) => {
       //1. caclulate threshold point, 9th from rear
       const nftCollections = contentRef.current.children;
       const visulalizedNFTCnt = nftCollections.length;
-      const thresholdIdx = visulalizedNFTCnt - 9 > 0 ? visulalizedNFTCnt - 9 : 0;
+      const thresholdIdx = visulalizedNFTCnt - REFETCH_THRESHOLD > 0 ? visulalizedNFTCnt - REFETCH_THRESHOLD : 0;
 
       // when Content doesn't have any nfts, registering intersection event is useless,
       // a) so fetch more nftChunks by increasing fetchIndicator
@@ -91,7 +91,7 @@ const NFTPaginationChunk = ({ isLast = false, chunkId, contentRef }) => {
         observer.observe(nftCollections[thresholdIdx]);
       } else {
         //a
-        if (fetchIndicator < 32) {
+        if (fetchIndicator < 31) {
           setFetchIndicator((current) => current + 1);
         }
       }

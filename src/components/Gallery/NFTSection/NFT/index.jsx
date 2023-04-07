@@ -6,7 +6,7 @@ const NFT = forwardRef(({ data, idx }, ref) => {
   const { image, name } = data;
   return (
     <Container ref={ref}>
-      <Image src={image} radius="8px 8px 0px 0px" />
+      <Image srcset={image + ' 269w'} src={image} radius="8px 8px 0px 0px" />
       <Description name={name} rank={idx} />
     </Container>
   );

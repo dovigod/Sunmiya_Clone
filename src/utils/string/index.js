@@ -4,5 +4,5 @@ export function isIncluded(src, target) {
 }
 
 export function popTokenIdFromName(item) {
-  return item?.name?.split('#')[1];
+  return Number(item.name.split('#')[1]);
 }

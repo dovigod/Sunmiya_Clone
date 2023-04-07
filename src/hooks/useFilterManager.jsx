@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { filterMap } from '@constants/filterMap';
 import { FilterContext, FILTER_PROTO } from '@contexts/FilterManagerContext';
 
-export const REFETCH_THRESHOLD_RATIO = 5 / 6;
+export const REFETCH_THRESHOLD = 9;
 
 /**
  * @typedef {Object} NFTData
