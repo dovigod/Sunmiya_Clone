@@ -57,5 +57,8 @@ yarn dev
 - send request to contract and request to URI. (by this, you will get lots of lags if keyword has lots of common on NFT range.) (e.g 1 -> [1,10,11~19,21,31,....])
 
 ### Issues
-
-[ ] - layout shift for Image
+ 
+[x] - layout shift of Image
+[x] - need logic for loding filter option state
+[x] - unexpected results for (filter -> search flow)
+[x] - not sure, but rerender doesn't happens on specific situations
